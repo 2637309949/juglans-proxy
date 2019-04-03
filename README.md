@@ -1,1 +1,1 @@
-# juglans-i18n
+# juglans-proxy

@@ -9,109 +9,26 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
  * @email [2637309949@qq.com]
  * @create date 2019-01-09 16:55:19
  * @modify date 2019-01-09 16:55:19
- * @desc [i18 asserts]
+ * @desc [koa proxy]
  */
-const assert = require('assert');
+// app.use(proxy({
+//   host:  'http://xxx.com',
+//   match: /^\/static\//,
+//   map: function(path) { return 'public/' + path; },
+// }));
+const proxy = require('koa-proxy');
 
-const is = require('is');
+module.exports = params =>
+/*#__PURE__*/
+function () {
+  var _ref2 = _asyncToGenerator(function* (_ref) {
+    let {
+      router
+    } = _ref;
+    router.use(proxy(params));
+  });
 
-module.exports = (_ref) => {
-  let {
-    getLocales,
-    getLocale,
-    translate
-  } = _ref;
-  return (
-    /*#__PURE__*/
-    function () {
-      var _ref3 = _asyncToGenerator(function* (_ref2) {
-        let {
-          router
-        } = _ref2;
-        assert.ok(is.function(getLocales), 'getLocales can not be empty!');
-        assert.ok(is.function(getLocale), 'getLocale can not be empty!');
-        assert.ok(is.function(translate), 'translate can not be empty!');
-        router.get('/system/i18n',
-        /*#__PURE__*/
-        function () {
-          var _ref4 = _asyncToGenerator(function* (ctx) {
-            try {
-              const data = yield getLocales();
-              ctx.status = 200;
-              ctx.body = data;
-            } catch (error) {
-              ctx.status = 500;
-              ctx.body = {
-                message: error.message
-              };
-            }
-          });
-
-          return function (_x2) {
-            return _ref4.apply(this, arguments);
-          };
-        }());
-        router.get('/system/i18n/:key',
-        /*#__PURE__*/
-        function () {
-          var _ref5 = _asyncToGenerator(function* (ctx) {
-            try {
-              const key = ctx.params.key;
-              const data = yield getLocale(key);
-              ctx.status = 200;
-              ctx.body = data;
-            } catch (error) {
-              ctx.status = 500;
-              ctx.body = {
-                message: error.message
-              };
-            }
-          });
-
-          return function (_x3) {
-            return _ref5.apply(this, arguments);
-          };
-        }());
-        router.post('/system/i18n/translate',
-        /*#__PURE__*/
-        function () {
-          var _ref6 = _asyncToGenerator(function* (ctx) {
-            try {
-              const {
-                from,
-                to,
-                items
-              } = ctx.request.body;
-              const data = yield translate({
-                from,
-                to,
-                items
-              });
-              ctx.body = data;
-            } catch (error) {
-              ctx.status = 500;
-              ctx.body = {
-                message: error.message
-              };
-            }
-          });
-
-          return function (_x4) {
-            return _ref6.apply(this, arguments);
-          };
-        }());
-        return {
-          i18n: {
-            getLocales,
-            getLocale,
-            translate
-          }
-        };
-      });
-
-      return function (_x) {
-        return _ref3.apply(this, arguments);
-      };
-    }()
-  );
-};
+  return function (_x) {
+    return _ref2.apply(this, arguments);
+  };
+}();
