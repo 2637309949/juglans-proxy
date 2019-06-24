@@ -1,5 +1,15 @@
-# juglans-proxy
+## juglans-proxy
 
+### Example
+
+```javascript
+app.use(proxy({
+  host:  'http://xxx.com',
+  match: /^\/static\//,
+  map: function(path) { return 'public/' + path; },
+}));
+```
+### API
 ## MIT License
 
 Copyright (c) 2018-2020 Double
