@@ -7,9 +7,26 @@ const convert = require('koa-convert');
 
 const proxy = require('koa-proxy');
 
-module.exports = params => (_ref) => {
+const logger = require('./logger');
+
+function Proxy(params) {
+  if (!(this instanceof Proxy)) {
+    return new Proxy(params);
+  }
+
+  this.params = params;
+  this.a = 0;
+}
+
+Proxy.prototype.pre = function () {
+  logger.info('plugin pre hook from limit');
+};
+
+Proxy.prototype.plugin = function (_ref) {
   let {
     httpProxy
   } = _ref;
-  httpProxy.use(convert(proxy(params)));
+  httpProxy.use(convert(proxy(this.params)));
 };
+
+module.exports = Proxy;
