@@ -56,7 +56,7 @@
   },
   "dependencies": {
     "is": "^3.3.0",
-    "juglans-addition": "^1.0.7",
+    "juglans-addition": "^1.0.9",
     "koa-convert": "^1.2.0",
     "request": "^2.88.0",
     "request-promise-native": "^1.0.7"
