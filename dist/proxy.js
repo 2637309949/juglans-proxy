@@ -19,16 +19,18 @@ module.exports = function () {
     /*#__PURE__*/
     function () {
       var _proxy = _asyncToGenerator(function* (ctx, next) {
-        const url = resolve(ctx.path, options);
-
-        if (!url) {
-          return next();
-        }
-
+        // match request path
         if (options.match) {
           if (!ctx.path.match(options.match)) {
             return next();
           }
+        } // resolve url
+
+
+        const url = resolve(ctx.path, options);
+
+        if (!url) {
+          return next();
         }
 
         let opt = {

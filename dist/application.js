@@ -3,9 +3,11 @@
 // Copyright (c) 2018-2020 Double.  All rights reserved.
 // Use of this source code is governed by a MIT style
 // license that can be found in the LICENSE file.
+const options = require('./options');
+
 const proxy = require('./proxy');
 
-var assert = require('assert');
+const assert = require('assert');
 
 function Proxy(options) {
   if (!(this instanceof Proxy)) {
@@ -16,6 +18,18 @@ function Proxy(options) {
   this.options = options;
 }
 
+Proxy.prototype.addOptions = function () {
+  for (var _len = arguments.length, opts = new Array(_len), _key = 0; _key < _len; _key++) {
+    opts[_key] = arguments[_key];
+  }
+
+  for (const opt of opts) {
+    opt.apply(this);
+  }
+
+  return this;
+};
+
 Proxy.prototype.plugin = function (_ref) {
   let {
     httpProxy
@@ -24,3 +38,4 @@ Proxy.prototype.plugin = function (_ref) {
 };
 
 module.exports = Proxy;
+module.exports.options = options;
