@@ -10,7 +10,9 @@ app.use(proxy({
   // map: function(path) { return 'public/' + path; },
 }));
 ```
+
 ### API
+
 ## MIT License
 
 Copyright (c) 2018-2020 Double
