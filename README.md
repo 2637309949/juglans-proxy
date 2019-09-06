@@ -1,12 +1,13 @@
 ## juglans-proxy
+Lightweight HTTP proxy for juglans
 
 ### Example
 
 ```javascript
 app.use(proxy({
-  host:  'http://xxx.com',
-  match: /^\/static\//,
-  map: function(path) { return 'public/' + path; },
+  host:  'http://www.baidu.com',
+  match: /^\/proxy\//,
+  // map: function(path) { return 'public/' + path; },
 }));
 ```
 ### API
